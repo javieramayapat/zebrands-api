@@ -41,6 +41,7 @@ DJANGO_APPS = [
 
 LOCAL_APPS = [
     'users',
+    'categories',
 ]
 THIRD_PARTY_APPS = [
     'rest_framework_simplejwt',
