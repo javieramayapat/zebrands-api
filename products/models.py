@@ -2,6 +2,7 @@ from django.db import models
 from django.db.models import SET_NULL
 from users.models import User
 from categories.models import Category
+from views.models import View
 
 
 class Product(models.Model):
@@ -14,6 +15,8 @@ class Product(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     category = models.ForeignKey(Category, on_delete=SET_NULL, null=True)
     user = models.ForeignKey(User, on_delete=SET_NULL, null=True)
+
+    views = models.ManyToManyField(View)
 
     def __str__(self):
         return self.name

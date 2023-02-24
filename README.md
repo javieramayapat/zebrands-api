@@ -71,8 +71,9 @@ Here're some of the projects's best features:
 1. Clone the repository
 2. Create your virtual enviromen with the command `py -m venv venv`
 3. Install requirements in your virtual enviroment `pip install -r requirements.txt`
-4. run in your console the command  `py manage.py createsuperuser`
-5. Now go to http://127.0.0.1:8000/docs and enjoy the app.
+4. run the app using `py manage.py runserver`
+5. run in your console the command  `py manage.py createsuperuser`
+7. Now go to http://127.0.0.1:8000/docs and enjoy the app.
 
 
 ## Licence

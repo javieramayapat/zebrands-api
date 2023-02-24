@@ -3,7 +3,7 @@ from products.models import Product
 
 
 @admin.register(Product)
-class CategoryAdmin(admin.ModelAdmin):
+class ProductAdmin(admin.ModelAdmin):
     list_display = [
         'sku',
         'brand',
