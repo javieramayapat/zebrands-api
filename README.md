@@ -1,43 +1,27 @@
-<h1 align="center" id="title">  Zebrands API 🚀</h1>
+<h1 align="center" id="title"> 🛍️ Zebrands API 🛍️</h1>
 
-🧳🛏️ API for mange users and product inside Zebrands
+Zebrands API manages product, user and category management for a retail company 🛏️🧳
 
 ## Table of Contents
 - [Table of Contents](#table-of-contents)
-- [🚀 Demo](#-demo)
-- [System Design 🔬](#system-design-)
+- [💡Features](#features)
+- [Entity-Relationship Diagram](#entity-relationship-diagram)
+- [System Design 🚀](#system-design-)
   - [Local enviroment](#local-enviroment)
   - [Production Enviroment](#production-enviroment)
-- [Entity-Relationship Diagram](#entity-relationship-diagram)
-- [💡Features](#features)
 - [🧑‍💻 Installation Steps](#-installation-steps)
+- [🚀 Demo](#-demo)
 - [Licence](#licence)
 - [Author](#author)
 
-
-
-## 🚀 Demo
-![Demo](docs/zebrands-swagger.png)
-
-## System Design 🔬
-### Local enviroment
-
-For the local enviroment the proposal is creating a dockerfile and docker-compose.yml for manage the services like the API and the database usign django and PostgreSQL.
-
-![zebrand-api-design](docs/local-enviroment.png)
-
-
-### Production Enviroment
-The architecture proposal for increase the services into a production enviroment is add 2 diferent services more that Amazon SES in which include:
-
-**Amazon S3:** I would implement Amazon S3 for manage the images o any file in the sistem, allowing to create a stateless backend if we have the necesity the scale the instance using Kubernetes to admin tis instance we are going to be able to scale horizontal this instance without the need to replicate all product images to each new instance created, which would not scale.
-
-**Amazon RDS:** I we manage a lot information we need to host it in a cloud relationship database system, which will allow me to grow my databases according to the volume of users that connect.
-
-
-
-![zebrand-api-design](docs/production-enviroment.png)
-
+## 💡Features
+Here're some of the projects's best features:
+- Endpoints for create, delete and update products ✅
+- Create, update and delete admins ✅
+- Endpoints for crud categories ✅
+- Use of container technology (Docker) to package code✅
+- Implement JWT for manage authentication ✅
+- Implement Swagger documentation ✅
 
 ## Entity-Relationship Diagram
 
@@ -47,35 +31,61 @@ I decided to implement a category table asociate with products and user using a 
 
 
 
-**Why a table View?**
+**Why a pivot table - View?**
 
-If a anonymus user is going to be able to check the products, the main idea is when a user that is not authenticated cheack a product this is going to create a register in the table product_view that is manage for django using many-to-many relationship.
+This table is used to store all the time a product is requested by an anonimus user, to manage this I use a many-to-many relationship beetween products and views.
 
-In the future we create a report where are going to be able to consult over products how many time is repeated into the product_view and filtering by periods of time chech which produc was consultin more times.
+If we need a report of the products we can take advantage of the query power of django to make a filter for all the times that a product appears in this table.
 
 ![Er-Diagram](docs/er-diagram.png)
 
 
+## System Design 🚀
+### Local enviroment
+
+For a local enviroment I package the project using techonolgies like:
+- Docker 🐋
+- Docker compose 🐳
+
+The idea is create an isole enviroment in which can separate the seervices like th app and the database and connect them in a easy way through enviroment variables and be ready for deploy.
 
 
-## 💡Features
-Here're some of the projects's best features:
-- Create, update and delete admins ✅
-- Implement Swagger documentation ✅
-- Implement JWT for manage authentication ✅
-- Endpoints for crud categories ✅
-- Endpoints for create, delete and update products ✅
 
+![zebrand-api-design](docs/local-enviroment.png)
+
+
+### Production Enviroment
+If we want to scale this architecture we can implement the following steps:
+1. Manage an orchestration-based architecture
+2. Manage a stateless type architecture
+   1. Enable new instances to be added
+   2. It will allow for better scaling of applications
+3. Use cloud tools such as RDS and S3 for information management.
+
+
+**Amazon S3:** An example of following a stateless architecture that we can implement in our API is the storage outside the django backend instance.
+
+By delegating this storage to an S3 bucket our instance does not store any files and instead points to the same bucket, which will allow it to scale easily.
+
+I would implement Amazon S3 for manage the images o any file in the sistem, allowing to create a stateless backend if we have the necesity the scale the instance using Kubernetes to admin tis instance we are going to be able to scale horizontal this instance without the need to replicate all product images to each new instance created, which would not scale.
+
+**Amazon RDS:** For manage a lot information we need to host it in a cloud relationship database system, which will allow us to grow my databases according to the volume of users and products that we store.
+
+
+![zebrand-api-design](docs/production-enviroment.png)
 
 ## 🧑‍💻 Installation Steps
-1. Clone the repository
-2. Install requirements in your virtual enviroment `pip install -r requirements.txt`
-3. Create the env file in the root of the project `.env` and copy the content of the `.env.example` to configurate environment variables.
-5. You can run the following command to buil the image. `$ docker-compose build`
-6. Once the image is built, run the container: `$ docker-compose up -d`
-7. Run the migrations with `docker-compose run app sh -c "python manage.py migrate`
-8. Create a superuser with the command `docker-compose run app sh -c "python manage.py createsuperuser`
-8. Now go to http://127.0.0.1:8000/docs and enjoy the app.
+1. Clone the repository  `git clone git@github.com:javieramayapat/zebrands-api.git`
+2. Create the env file in the root of the project `.env` and copy the content of the `.env.example` to configurate environment variables.
+3. You can run the following command to buil the image. `$ docker-compose build`
+4. Once the image is built, run the container: `$ docker-compose up -d`
+5. Run the migrations with `docker-compose run app sh -c "python manage.py migrate`
+6. Create a superuser with the command `docker-compose run app sh -c "python manage.py createsuperuser`
+7. Now go to http://127.0.0.1:8000/docs and enjoy the app.
+
+
+## 🚀 Demo
+![Demo](docs/zebrands-swagger.png)
 
 ## Licence
 > This project is licensed under the MIT License
