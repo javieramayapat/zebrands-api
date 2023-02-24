@@ -69,12 +69,13 @@ Here're some of the projects's best features:
 
 ## 🧑‍💻 Installation Steps
 1. Clone the repository
-2. Create your virtual enviromen with the command `py -m venv venv`
-3. Install requirements in your virtual enviroment `pip install -r requirements.txt`
-4. run the app using `py manage.py runserver`
-5. run in your console the command  `py manage.py createsuperuser`
-7. Now go to http://127.0.0.1:8000/docs and enjoy the app.
-
+2. Install requirements in your virtual enviroment `pip install -r requirements.txt`
+3. Create the env file in the root of the project `.env` and copy the content of the `.env.example` to configurate environment variables.
+5. You can run the following command to buil the image. `$ docker-compose build`
+6. Once the image is built, run the container: `$ docker-compose up -d`
+7. Run the migrations with `docker-compose run app sh -c "python manage.py migrate`
+8. Create a superuser with the command `docker-compose run app sh -c "python manage.py createsuperuser`
+8. Now go to http://127.0.0.1:8000/docs and enjoy the app.
 
 ## Licence
 > This project is licensed under the MIT License
