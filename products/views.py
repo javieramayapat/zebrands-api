@@ -35,4 +35,19 @@ class ProductsModelViewSet(ModelViewSet):
         view = View.objects.create()
         product.views.add(view)
         return Response(ProductSerializer(product).data, status=status.HTTP_200_OK)
-    
+
+    def partial_update(self, request, sku=None, **kwargs):
+        if sku is not None:
+            product = get_object_or_404(Product, sku=sku)
+        else:
+            product = self.get_object()
+
+        serializer = ProductPatchSerializer(Product, data=request.data, partial=True)
+        serializer.is_valid(raise_exception=True)
+
+        product.price = serializer.validated_data.get('price')
+        product.save()
+
+        # todo: Add send email to admins with new of update
+
+        return Response(ProductSerializer(product).data, status=status.HTTP_200_OK)
