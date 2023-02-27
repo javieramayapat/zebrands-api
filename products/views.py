@@ -26,3 +26,13 @@ class ProductsModelViewSet(ModelViewSet):
 
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    def retrieve(self, request, sku=None, **kwargs):
+        if sku is not None:
+            product = get_object_or_404(Product, sku=sku)
+        else:
+            product = self.get_object()
+        view = View.objects.create()
+        product.views.add(view)
+        return Response(ProductSerializer(product).data, status=status.HTTP_200_OK)
+    
