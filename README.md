@@ -5,25 +5,40 @@ Zebrands API manages product, user and category management for a retail company 
 ## Table of Contents
 - [Table of Contents](#table-of-contents)
 - [💡Features](#features)
-- [Entity-Relationship Diagram](#entity-relationship-diagram)
-- [System Design 🚀](#system-design-)
-  - [Local enviroment](#local-enviroment)
-  - [Production Enviroment](#production-enviroment)
+  - [Extra Features](#extra-features)
+- [🚀 System Design](#-system-design)
+  - [🏠 Local enviroment](#-local-enviroment)
+  - [🌐 Production Enviroment](#-production-enviroment)
 - [🧑‍💻 Installation Steps](#-installation-steps)
-- [🚀 Demo](#-demo)
+  - [🔓 How to test the API using Token Authorization](#-how-to-test-the-api-using-token-authorization)
+  - [🚀 Demo](#-demo)
 - [Licence](#licence)
-- [Author](#author)
+- [👨‍💻Author](#author)
 
 ## 💡Features
 Here're some of the projects's best features:
-- Endpoints for create, delete and update products ✅
-- Create, update and delete admins ✅
-- Endpoints for crud categories ✅
+- Products 🛒
+  - Create, update and delete Products
+  - List all Products of the zebrands catalog.
+  - Search by product filtering by sku
+  - Counting anonymous user views for future reports.
+
+- Users 💁‍♀️💁‍♂️
+  - Create, update and delete Users(admins).
+  - List of administrator users restricted to administrator users.
+
+- Categories 🛍️
+  - Complete CRUD for manage product categories.
+
+
+### Extra Features
 - Use of container technology (Docker) to package code✅
 - Implement JWT for manage authentication ✅
 - Implement Swagger documentation ✅
+- Implement Pagination for GET endpoints in Users, Products and categories ✅
 
-## Entity-Relationship Diagram
+
+##🎯 Entity-Relationship Diagram
 
 In order to see the application I created my own relationship model, identifying a one-to-many relationship between user and products.
 
@@ -33,15 +48,15 @@ I decided to implement a category table asociate with products and user using a 
 
 **Why a pivot table - View?**
 
-This table is used to store all the time a product is requested by an anonimus user, to manage this I use a many-to-many relationship beetween products and views.
+This table is used to store all the time a product is requested by an anonimus user, to manage this I use a many-to-many relationship between products and views.
 
 If we need a report of the products we can take advantage of the query power of django to make a filter for all the times that a product appears in this table.
 
 ![Er-Diagram](docs/er-diagram.png)
 
 
-## System Design 🚀
-### Local enviroment
+## 🚀 System Design
+### 🏠 Local enviroment
 
 For a local enviroment I package the project using techonolgies like:
 - Docker 🐋
@@ -54,7 +69,7 @@ The idea is create an isole enviroment in which can separate the seervices like 
 ![zebrand-api-design](docs/local-enviroment.png)
 
 
-### Production Enviroment
+### 🌐 Production Enviroment
 If we want to scale this architecture we can implement the following steps:
 1. Manage an orchestration-based architecture
 2. Manage a stateless type architecture
@@ -83,12 +98,29 @@ I would implement Amazon S3 for manage the images o any file in the sistem, allo
 6. Create a superuser with the command `docker-compose run app sh -c "python manage.py createsuperuser`
 7. Now go to http://127.0.0.1:8000/docs and enjoy the app.
 
+### 🔓 How to test the API using Token Authorization
+To use the API endpoint you need to be authenticated
 
-## 🚀 Demo
+1. Authenticated with your credential into `auth/login/` endpoint with your username and password to get your token and request information from the API.
+
+![Auth-login](docs/auth-login-zebrands-api.png)
+
+2. Copy you your `access token`
+
+3. Use the `Authorize button` at the top of the documentation, in the value field add the prefix `Bearer` + `your_token` with a space in between for proper authentication.
+
+![add-bearer-autorization](docs/bearer-autorization.png)
+
+4. Apply the authorization and start playing with the API which is the fun part of it 🚀.
+
+![bearer-autorization](docs/token-authorization.png)
+
+
+### 🚀 Demo
 ![Demo](docs/zebrands-swagger.png)
 
 ## Licence
 > This project is licensed under the MIT License
 
-## Author
+## 👨‍💻Author
 Made with 💙 by [javieramayapat](https://www.linkedin.com/in/javieramayapat/)
