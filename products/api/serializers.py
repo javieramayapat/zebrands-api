@@ -19,16 +19,10 @@ class ProductSerializer(serializers.ModelSerializer):
             'updated_at',
         ]
 
-    def save(self, **kwargs):
-        name = self.validated_data.get('name', '')
-        brand = self.validated_data.get('brand', '')
-        description = self.validated_data.get('description', '')
-        prince = self.validated_data.get('price', '')
-        category = self.validated_data.get('category', '')
-        user = self.validated_data.get('user', '')
-        identifier = Product.objects.count() + 1
-        sku = f"{name[:4].upper()}-{brand[:4].upper()}-{identifier:04}"
 
-        self.validated_data['sku'] = sku
-
-        return super().save(**kwargs)
+class ProductPatchSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
+        fields = [
+            'price',
+        ]
