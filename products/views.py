@@ -6,7 +6,10 @@ from rest_framework.viewsets import ModelViewSet
 from products.api.serializers import ProductSerializer, ProductPatchSerializer
 from products.models import Product
 from views.models import View
+from users.models import User
+from django.core.mail import send_mail
 from products.api.permissions import IsAdminOrReadOnly
+from utils.utils import send_price_update_notification
 
 
 class ProductsModelViewSet(ModelViewSet):
@@ -48,6 +51,7 @@ class ProductsModelViewSet(ModelViewSet):
         product.price = serializer.validated_data.get('price')
         product.save()
 
-        # todo: Add send email to admins with new of update
+        # Send price update notification
+        send_price_update_notification(product)
 
         return Response(ProductSerializer(product).data, status=status.HTTP_200_OK)
