@@ -1,4 +1,5 @@
 from django.views import View
+from drf_yasg.utils import swagger_auto_schema
 from rest_framework import status
 from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
@@ -6,8 +7,6 @@ from rest_framework.viewsets import ModelViewSet
 from products.api.serializers import ProductSerializer, ProductPatchSerializer
 from products.models import Product
 from views.models import View
-from users.models import User
-from django.core.mail import send_mail
 from products.api.permissions import IsAdminOrReadOnly
 from utils.utils import send_price_update_notification
 
@@ -39,6 +38,7 @@ class ProductsModelViewSet(ModelViewSet):
         product.views.add(view)
         return Response(ProductSerializer(product).data, status=status.HTTP_200_OK)
 
+    @swagger_auto_schema(request_body=ProductPatchSerializer)
     def partial_update(self, request, sku=None, **kwargs):
         if sku is not None:
             product = get_object_or_404(Product, sku=sku)

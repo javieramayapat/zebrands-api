@@ -7,5 +7,4 @@ from categories.api.permissions import IsAdminOrReadOnly
 class CategoryModelViewSet(ModelViewSet):
     permission_classes = [IsAdminOrReadOnly]
     serializer_class = CategorySerializer
-    ordering = ['-created_at']
-    queryset = Category.objects.all()
+    queryset = Category.objects.all().order_by('-created_at')
