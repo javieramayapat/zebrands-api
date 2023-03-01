@@ -5,7 +5,7 @@ services:
     container_name: django-zebrands
     build:
       context: .
-      dockerfile: ./compose/local/Dockerfile
+      dockerfile: ./compose/production/Dockerfile
     volumes:
         - .:/app
     command: >
