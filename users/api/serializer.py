@@ -2,7 +2,9 @@ from rest_framework import serializers
 from users.models import User
 
 
-class UserRegisterSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
+    """Serializer to return information from the users"""
+
     class Meta:
         model = User
         fields = [
@@ -11,35 +13,33 @@ class UserRegisterSerializer(serializers.ModelSerializer):
             'last_name',
             'email',
             'username',
-            'password',
         ]
 
-        extra_kwargs = {'is_staff': {'default': True}}
 
-    def create(self, validated_data):
-        is_staff = validated_data.get('is_staff', True)
+class UserRegisterSerializer(serializers.ModelSerializer):
+    """ Serializer to register users and add role is_staff"""
 
-        # Create the new user with teh validated data and encrypted password
-        user = User.objects.create_user(
-            email=validated_data['email'],
-            username=validated_data['username'],
-            first_name=validated_data['first_name'],
-            last_name=validated_data['last_name'],
-            is_staff=is_staff
-        )
-        user.set_password(validated_data['password'])
-        user.save()
-
-        return user
-
-
-class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = [
             'id',
-            'email',
+            'first_name',
             'last_name',
-            'email',
             'username',
+            'email',
+            'password',
+        ]
+
+
+class UserUpdateSerializer(serializers.ModelSerializer):
+    """Serializer to update basic values form the user"""
+
+    class Meta:
+        model = User
+        fields = [
+            'first_name',
+            'last_name',
+            'user_name',
+            'password'
+            'email'
         ]
