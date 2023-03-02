@@ -28,27 +28,37 @@ Here're some of the projects's best features:
   - List of administrator users restricted to administrator users.
 
 - Categories 🛍️
-  - Complete CRUD for manage product categories.
+  - Complete CRUD to manage product categories.
+  
+- ⚠️ Send emails using AWS SES 📨
+  - This feature is limitated by AWS free tier.
+  - What did I do to solution:
+  I created a valid Gmail that you can use for creating a new admin into the API, This Gmail account has the email verified into AWS SES, this allows you to edit products by SKU and send a notification for all admins into the platform only if their emails are verified.
+  - Credentials:
+     - gmail: zebrands.test@gmail.com
+     - password: zebrandsadmin
+  - 
 
 
 ### Extra Features
-- Use of container technology (Docker) to package code✅
+- Use of container technology (Docker) to package code ✅
+- Deploy into AWS EC2 Instance ✅
 - Implement JWT for manage authentication ✅
 - Implement Swagger documentation ✅
-- Implement Pagination for GET endpoints in Users, Products and categories ✅
+- Implement Pagination to GET endpoints in Users, Products and categories ✅
 
 
-##🎯 Entity-Relationship Diagram
+## 🎯 Entity-Relationship Diagram
 
-In order to see the application I created my own relationship model, identifying a one-to-many relationship between user and products.
+In order to see the application, I created my own relationship model, identifying a one-to-many relationship between user and products.
 
-I decided to implement a category table asociate with products and user using a one-to-many relationship in which every product needs to be into a category and the admins can create the categories.
+I decided to implement a category table associate with products and user using a one-to-many relationship in which every product needs to be into a category and the admins can create the categories.
 
 
 
 **Why a pivot table - View?**
 
-This table is used to store all the time a product is requested by an anonimus user, to manage this I use a many-to-many relationship between products and views.
+This table is used to store all the time a product is requested by an anonymous user, to manage this I use a many-to-many relationship between products and views.
 
 If we need a report of the products we can take advantage of the query power of django to make a filter for all the times that a product appears in this table.
 
