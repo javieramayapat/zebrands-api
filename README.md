@@ -34,10 +34,12 @@ Here're some of the projects's best features:
   - This feature is limitated by AWS free tier.
   - What did I do to solution:
   I created a valid Gmail that you can use for creating a new admin into the API, This Gmail account has the email verified into AWS SES, this allows you to edit products by SKU and send a notification for all admins into the platform only if their emails are verified.
-  - Credentials:
-     - gmail: zebrands.test@gmail.com
-     - password: zebrandsadmin
-  - 
+  - Gmail Credentials:
+     - 🔐gmail: zebrands.test@gmail.com
+     - 🔐password: zebrandsadmin
+  - Admin credentials for play with API:
+    - 🔐username: zebrands
+    - 🔐password: zebrands
 
 
 ### Extra Features
