@@ -1,6 +1,6 @@
 name: checks
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   test-lint:
@@ -14,7 +14,11 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Checkout 🔐
         uses: actions/checkout@v2
-      - name: Test 🧪
-        run: docker-compose run --rm app sh -c "python manage.py test"
-      - name: Linters 📑
+      - name: Format code with black 🖤
+        run: docker-compose run --rm app sh -c "black --check ."
+      - name: Order imports with isort 🧹
+        run: docker-compose run --rm app sh -c "isort --check-only ."
+      - name: Code style verification with flake8 📑
         run: docker-compose run --rm app sh -c "flake8"
+      - name: Tests 🧪
+        run: docker-compose run --rm app sh -c "python manage.py test"
