@@ -27,34 +27,35 @@ from views.api.routers import router_view
 schema_view = get_schema_view(
     openapi.Info(
         title="Zebrands API",
-        default_version='v1',
+        default_version="v1",
         description="Zebrand API for manage Users 👦/👧 and products 🛏️🧳",
         contact=openapi.Contact(email="javieramayapat@gmail.com"),
         license=openapi.License(name="BSD License"),
     ),
     public=True,
     permission_classes=[permissions.AllowAny],
-
 )
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-
+    path("admin/", admin.site.urls),
     # documentation
-    path('docs/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
-
+    path(
+        "docs/",
+        schema_view.with_ui("swagger", cache_timeout=0),
+        name="schema-swagger-ui",
+    ),
+    path(
+        "redoc/",
+        schema_view.with_ui("redoc", cache_timeout=0),
+        name="schema-redoc",
+    ),
     # users
-    path('api/v1/', include(router_user.urls)),
-    path('api/v1/', include('users.api.router')),
-
+    path("api/v1/", include(router_user.urls)),
+    path("api/v1/", include("users.api.router")),
     # categories
-    path('api/v1/', include(router_category.urls)),
-
+    path("api/v1/", include(router_category.urls)),
     # products
-    path('api/v1/', include(router_product.urls)),
-
+    path("api/v1/", include(router_product.urls)),
     # views
-    path('api/v1/', include(router_view.urls)),
-
+    path("api/v1/", include(router_view.urls)),
 ]

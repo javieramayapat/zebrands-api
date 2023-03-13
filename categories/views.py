@@ -8,4 +8,4 @@ from categories.models import Category
 class CategoryModelViewSet(ModelViewSet):
     permission_classes = [IsAdminOrReadOnly]
     serializer_class = CategorySerializer
-    queryset = Category.objects.all().order_by('-created_at')
+    queryset = Category.objects.all().order_by("-created_at")

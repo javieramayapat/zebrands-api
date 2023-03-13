@@ -9,26 +9,26 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = [
-            'id',
-            'first_name',
-            'last_name',
-            'email',
-            'username',
+            "id",
+            "first_name",
+            "last_name",
+            "email",
+            "username",
         ]
 
 
 class UserRegisterSerializer(serializers.ModelSerializer):
-    """ Serializer to register users and add role is_staff"""
+    """Serializer to register users and add role is_staff"""
 
     class Meta:
         model = User
         fields = [
-            'id',
-            'first_name',
-            'last_name',
-            'username',
-            'email',
-            'password',
+            "id",
+            "first_name",
+            "last_name",
+            "username",
+            "email",
+            "password",
         ]
 
 
@@ -37,10 +37,4 @@ class UserUpdateSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = [
-            'first_name',
-            'last_name',
-            'user_name',
-            'password'
-            'email'
-        ]
+        fields = ["first_name", "last_name", "user_name", "password" "email"]

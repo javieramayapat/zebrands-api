@@ -5,7 +5,7 @@ from views.views import ViewsModelViewSet
 router_view = DefaultRouter()
 
 router_view.register(
-    prefix='views',
-    basename='views',
+    prefix="views",
+    basename="views",
     viewset=ViewsModelViewSet,
 )
