@@ -1,17 +1,28 @@
-# Dockerfile
+FROM python:3.9-alpine3.13
 
-# Pull the official python image
-# Indicates the base image on which the application will be built inside the container.
-FROM python:3.9
+ENV PYTHONUNBUFFERED 1
 
-# Set a working directory
 WORKDIR /app
 
-# Copy dependencies of the project in workdir
-COPY ./requirements.txt /app/requirements.txt
+COPY ./requirements.txt /tmp/requirements.txt
+COPY . /app
 
-# Install dependencies in the workidir of the container
-RUN pip install -r /app/requirements.txt
+RUN python -m venv /venv && \
+    /venv/bin/pip install --upgrade pip && \
+    apk add --update --no-cache postgresql-client && \
+    apk add --update --no-cache --virtual .tmp-build-deps \
+        build-base postgresql-dev musl-dev && \
+    /venv/bin/pip install -r /tmp/requirements.txt && \
+    rm -rf /tmp && \
+    adduser \
+        --disabled-password \
+        --no-create-home \
+        django-user
 
-# Define the command with which our application will be executed inside the container
+ENV PATH="/venv/bin:$PATH"
+
+USER django-user
+
+Expose 8000
+
 CMD python manage.py runserver 0.0.0.0:8000
