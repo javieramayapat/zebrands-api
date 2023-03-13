@@ -1,6 +1,6 @@
 from rest_framework.routers import DefaultRouter
-from categories.views import CategoryModelViewSet
 
+from categories.views import CategoryModelViewSet
 
 router_category =  DefaultRouter()
 

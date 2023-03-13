@@ -1,6 +1,6 @@
 from rest_framework.routers import DefaultRouter
-from views.views import ViewsModelViewSet
 
+from views.views import ViewsModelViewSet
 
 router_view = DefaultRouter()
 

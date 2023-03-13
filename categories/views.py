@@ -1,7 +1,8 @@
 from rest_framework.viewsets import ModelViewSet
-from categories.models import Category
-from categories.api.serializers import CategorySerializer
+
 from categories.api.permissions import IsAdminOrReadOnly
+from categories.api.serializers import CategorySerializer
+from categories.models import Category
 
 
 class CategoryModelViewSet(ModelViewSet):

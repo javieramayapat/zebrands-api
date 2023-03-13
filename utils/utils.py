@@ -1,7 +1,9 @@
 import os
+
 from django.core.mail import send_mail
-from users.models import User
 from dotenv import load_dotenv
+
+from users.models import User
 
 load_dotenv()
 

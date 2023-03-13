@@ -1,7 +1,8 @@
 from django.db import models
 from django.db.models import SET_NULL
-from users.models import User
+
 from categories.models import Category
+from users.models import User
 from views.models import View
 
 

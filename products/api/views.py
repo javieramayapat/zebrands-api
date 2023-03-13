@@ -4,11 +4,12 @@ from rest_framework import status
 from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
-from products.api.serializers import ProductSerializer, ProductPatchSerializer
-from products.models import Product
-from views.models import View
+
 from products.api.permissions import IsAdminOrReadOnly
+from products.api.serializers import ProductPatchSerializer, ProductSerializer
+from products.models import Product
 from utils.utils import send_price_update_notification
+from views.models import View
 
 
 class ProductsModelViewSet(ModelViewSet):

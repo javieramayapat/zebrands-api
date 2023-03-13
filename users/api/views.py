@@ -1,10 +1,14 @@
-from rest_framework import status
-from rest_framework.response import Response
-from rest_framework.permissions import IsAuthenticated
-from rest_framework.viewsets import ModelViewSet
-from users.api.serializer import UserSerializer, UserRegisterSerializer, UserUpdateSerializer
 from drf_yasg.utils import swagger_auto_schema
+from rest_framework import status
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.viewsets import ModelViewSet
 
+from users.api.serializer import (
+    UserRegisterSerializer,
+    UserSerializer,
+    UserUpdateSerializer,
+)
 from users.models import User
 
 
