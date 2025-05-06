@@ -25,7 +25,8 @@ Here're some of the projects's best features:
 
 - Users 💁‍♀️💁‍♂️
   - Create, update and delete Users(admins).
-  - List of administrator users restricted to administrator users.
+  - List of administrator users restricted to administrator users.  
+  - example
 
 - Categories 🛍️
   - Complete CRUD to manage product categories.
